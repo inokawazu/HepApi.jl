@@ -89,7 +89,7 @@ function search_inspirehep(record_type::AbstractString;
 													 query_string=nothing,
 													 sort_by=nothing,
 													 number_of_results=nothing,
-													 page=nothing,
+													 page=1,
 													 fields=nothing
 													)
 	query = Query(query_string , sort_by, number_of_results, page, fields)

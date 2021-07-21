@@ -34,3 +34,23 @@ using Test
 	@info "Converted a response to JSON"
 	@test true
 end;
+
+@testset "testing search_inspirehep" begin
+	record_type = "literature"
+	q = "a E.Witten.1"
+	sort = "mostcited"
+	size = 10
+	page = 1
+	fields = ["authors"]
+
+
+	sch = search_inspirehep(
+										record_type;
+										query_string=q,
+										sort_by=sort,
+										number_of_results=10,
+										page=page,
+										fields=fields
+										)
+	@test true
+end;

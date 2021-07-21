@@ -6,15 +6,17 @@ using Test
 
 @testset "using all fields of Query" begin
 	record_type = "literature"
-	q = "a E.Witten.1"
-	sort = "mostcited"
-	size = 10
-	page = 1
-	fields = ["authors"]
+	query = Dict(
+							 "q" => "a E.Witten.1",
+							 "sort" => "mostcited",
+							 "size" => 10,
+							 "page" => 1,
+							 "fields" => "authors"
+							 )
 	
-	query = HepApi.Query(q, sort, size, page, fields)
-	@test true
-	@info "Made the Query"
+	# query = HepApi.Query(q, sort, size, page, fields)
+	# @test true
+	# @info "Made the Query"
 
 	sch = HepApi.Search(record_type, query)
 	@test true
@@ -36,21 +38,16 @@ using Test
 end;
 
 @testset "testing search_inspirehep" begin
+	
 	record_type = "literature"
-	q = "a E.Witten.1"
-	sort = "mostcited"
-	size = 10
-	page = 1
-	fields = ["authors"]
+	query = Dict{String, Union{String, Integer}}(
+							 "q" => "a E.Witten.1",
+							 "sort" => "mostcited",
+							 "size" => 10,
+							 "page" => 1,
+							 "fields" => "authors"
+							 )
 
-
-	sch = search_inspirehep(
-										record_type;
-										query_string=q,
-										sort_by=sort,
-										number_of_results=10,
-										page=page,
-										fields=fields
-										)
+	sch = search_inspirehep(record_type, query)
 	@test true
 end;
